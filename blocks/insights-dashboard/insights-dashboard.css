@@ -1,0 +1,132 @@
+.insights-dashboard {
+  background: linear-gradient(145deg, var(--background-color), var(--light-color));
+  border: 1px solid #e5e5e5;
+  border-radius: 16px;
+  box-shadow: 0 14px 30px -18px rgba(0, 0, 0, 0.25);
+  padding: 20px;
+}
+
+.insights-dashboard__inner {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.insights-dashboard__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.insights-dashboard__eyebrow {
+  margin: 0;
+  font-size: var(--body-font-size-xs);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--link-hover-color);
+}
+
+.insights-dashboard__timestamp {
+  margin: 0;
+  color: var(--dark-color);
+}
+
+.insights-dashboard__kpis {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 12px;
+}
+
+.insights-dashboard__kpi-card {
+  background: var(--background-color);
+  border-radius: 12px;
+  padding: 12px 14px;
+  border: 1px solid #e9e9e9;
+}
+
+.insights-dashboard__kpi-label {
+  margin: 0;
+  color: var(--dark-color);
+  font-size: var(--body-font-size-xs);
+}
+
+.insights-dashboard__kpi-value {
+  margin: 6px 0 2px;
+  font-weight: 600;
+  font-size: var(--heading-font-size-s);
+}
+
+.insights-dashboard__kpi-change {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-size: var(--body-font-size-xs);
+  background-color: #eef6ed;
+  color: #1f7a3d;
+}
+
+.insights-dashboard__kpi-change.is-negative {
+  background-color: #fff1f0;
+  color: #b3261e;
+}
+
+.insights-dashboard__kpi-change.is-positive {
+  background-color: #e8f5ff;
+  color: #0c65c2;
+}
+
+.insights-dashboard__trends {
+  background: var(--background-color);
+  border-radius: 12px;
+  padding: 12px 14px;
+  border: 1px dashed #dcdcdc;
+}
+
+.insights-dashboard__section-title {
+  margin: 0 0 8px;
+  font-weight: 600;
+  color: var(--dark-color);
+}
+
+.insights-dashboard__trends-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 10px;
+}
+
+.insights-dashboard__trend {
+  padding: 8px 10px;
+  border-radius: 8px;
+  background: var(--light-color);
+}
+
+.insights-dashboard__trend-title {
+  margin: 0;
+  font-weight: 600;
+}
+
+.insights-dashboard__trend-detail {
+  margin: 4px 0 0;
+  color: var(--dark-color);
+  font-size: var(--body-font-size-xs);
+}
+
+.insights-dashboard__empty {
+  margin: 0;
+  color: var(--dark-color);
+  font-size: var(--body-font-size-xs);
+}
+
+.insights-dashboard__error {
+  margin: 0;
+  color: #b3261e;
+  font-weight: 600;
+}
+
+.insights-dashboard.is-error {
+  border-color: #f8c4c0;
+  background: #fff1f0;
+}
