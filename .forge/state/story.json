@@ -1,0 +1,19 @@
+{
+  "storyKey": "FORGE-102",
+  "displayName": "Story 2 — Article Hero Block",
+  "pipelineState": "AWAITING_HUMAN_REVIEW",
+  "createdAt": "2026-05-07T04:03:00Z",
+  "updatedAt": "2026-05-07T04:42:00Z",
+  "storyContext": {
+    "planningRationale": "Single Agent Task decomposition. Three co-located artifacts.",
+    "planReviewFeedback": "Both reviewers APPROVED round 1.",
+    "executionSummary": "AT-FORGE-102-001 complete. 3 files. 2 commits.",
+    "devReviewFeedback": "Security APPROVED. Best-practices APPROVED round 2 after fixes.",
+    "emergentFindings": ["h1 may not be inside block DOM — fallback pattern used", "No spacing tokens in design system"],
+    "testResults": "14/15 passed. 1 failure: hardcoded border-radius on hero image (TS-015, low impact).",
+    "prAssembly": "PR body written to .forge/artifacts/pr-body.md. Push blocked by org write access — PR must be created manually or via fork."
+  },
+  "storyFile": "STORY-2-ARTICLE-HERO.md",
+  "solutionPack": "eds",
+  "projectPack": "splunk-project-forge"
+}
