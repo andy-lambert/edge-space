@@ -1,8 +1,8 @@
 {
-  "name": "@adobe-ps/splunk-project-forge-redux",
+  "name": "@andy-lambert/edge-space",
   "private": true,
   "version": "1.0.0",
-  "description": "Splunk Blog EDS Migration — Redux Test Site (Project Forge pipeline testing)",
+  "description": "Splunk Blog EDS Migration — Edge Space Test Site (Project Forge pipeline testing)",
   "scripts": {
     "lint:js": "eslint .",
     "lint:css": "stylelint \"blocks/**/*.css\" \"styles/*.css\"",
@@ -11,14 +11,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Adobe-Professional-Services/Splunk-Project-Forge-Redux.git"
+    "url": "git+https://github.com/andy-lambert/edge-space.git"
   },
-  "author": "Adobe Professional Services",
+  "author": "Andy Lambert",
   "license": "Apache License 2.0",
   "bugs": {
-    "url": "https://github.com/Adobe-Professional-Services/Splunk-Project-Forge-Redux/issues"
+    "url": "https://github.com/andy-lambert/edge-space/issues"
   },
-  "homepage": "https://github.com/Adobe-Professional-Services/Splunk-Project-Forge-Redux#readme",
+  "homepage": "https://github.com/andy-lambert/edge-space#readme",
   "devDependencies": {
     "@babel/eslint-parser": "7.28.6",
     "eslint": "8.57.1",
