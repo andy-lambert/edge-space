@@ -1,0 +1,104 @@
+{
+  "storyKey": "FORGE-102",
+  "tasks": [
+    {
+      "taskId": "AT-FORGE-102-001",
+      "sequenceOrder": 1,
+      "dependencies": [],
+      "category": "cat:block",
+      "estimatedComplexity": "medium",
+      "artifacts": [
+        {
+          "path": "blocks/article-hero/article-hero.js",
+          "type": "block-js"
+        },
+        {
+          "path": "blocks/article-hero/article-hero.css",
+          "type": "block-css"
+        },
+        {
+          "path": "blocks/article-hero/article-hero.test.js",
+          "type": "block-test"
+        }
+      ],
+      "specification": {
+        "summary": "Implement the Article Hero block with JS, CSS, and tests",
+        "imports": [
+          "getMetadata from '../../scripts/aem.js'",
+          "createOptimizedPicture from '../../scripts/aem.js'"
+        ],
+        "decorateFunction": {
+          "pattern": "export default function decorate(block)",
+          "metadataFields": ["category", "published", "read-time"],
+          "domSources": ["h1 (title)", "picture (hero image from block table)"],
+          "outputStructure": {
+            "metadataRow": "div.article-hero-metadata containing: category badge (linked), date (<time>), separator, read-time",
+            "titleSection": "div.article-hero-title containing h1",
+            "imageSection": "div.article-hero-image containing responsive picture (only if image present)"
+          },
+          "variants": {
+            "standard": "article-hero — with hero image",
+            "noImage": "article-hero no-image — no image section, title collapses upward"
+          },
+          "postInit": "Add 'article-hero-loaded' class to block after decoration complete"
+        },
+        "categoryBadge": {
+          "element": "a",
+          "href": "/en_us/blog/{category-slug}.html",
+          "class": "article-hero-category",
+          "attribute": "data-track-analytics=\"true\"",
+          "style": "pill-shaped, brand magenta accent (--button-color, --pill-radius)"
+        },
+        "dateFormatting": {
+          "input": "March 23, 2026 (from getMetadata('published'))",
+          "output": "MARCH 23, 2026 (uppercase)",
+          "element": "time",
+          "datetimeAttribute": "2026-03-23 (ISO date)"
+        },
+        "readTime": {
+          "format": "X MINUTE READ (uppercase from getMetadata('read-time'))"
+        },
+        "heroImage": {
+          "source": "createOptimizedPicture()",
+          "loading": "eager",
+          "width": "full-width responsive"
+        },
+        "missingMetadata": "If getMetadata() returns null/empty for any field, omit that element entirely from the DOM. No exceptions thrown. Other fields render independently.",
+        "cssRequirements": {
+          "rootSelector": ".article-hero",
+          "tokens": ["--button-color", "--pill-radius", "--heading-font-size-xxl", "--heading-color", "--body-font-size-s"],
+          "responsive": {
+            "mobile": "< 600px: metadata items stack vertically (flex-direction: column, align-items: flex-start), separator hidden",
+            "desktop": ">= 600px: metadata items inline (flex-direction: row), separator visible"
+          },
+          "noImageVariant": ".article-hero.no-image .article-hero-title { margin-top: 0 }"
+        }
+      },
+      "acceptanceCriteria": [
+        "AC-1: Category badge renders with correct text, linked to category page",
+        "AC-2: Published date displays in 'MONTH DD, YYYY' format with <time> element",
+        "AC-3: Read time displays 'X MINUTE READ'",
+        "AC-4: Title renders as h1",
+        "AC-5: With-image variant: responsive hero image renders with eager loading",
+        "AC-6: No-image variant: no image section present, layout adjusted",
+        "AC-7: 'article-hero-loaded' class added after initialization",
+        "AC-8: Category link has data-track-analytics='true'",
+        "AC-9: Missing metadata: element omitted, no exceptions, other fields unaffected",
+        "AC-10: Responsive (< 600px): metadata row items stack vertically; separator hidden",
+        "AC-11: CSS uses design system tokens",
+        "AC-12: ESLint 0 errors, Stylelint 0 errors, block tests pass",
+        "AC-13: No governance rule violations"
+      ],
+      "constraints": [
+        "EDS:DECORATE-PATTERN — decorate(block) reads metadata via getMetadata() from aem.js",
+        "EDS:RESPONSIVE-IMAGES — Hero image must use createOptimizedPicture(), never manual <img>",
+        "EDS:DESIGN-TOKENS — All visual properties from CSS custom properties",
+        "EDS:PERFORMANCE — Hero image loading='eager' (LCP candidate)",
+        "EDS:ACCESSIBILITY — Semantic h1, <time> element, linked category with meaningful text",
+        "EDS:VANILLA-JS — No frameworks, no build step, vanilla JS/CSS only",
+        "GOV:STOP — Search before creating (completed: no existing article-hero found)"
+      ],
+      "status": "PLANNED"
+    }
+  ]
+}

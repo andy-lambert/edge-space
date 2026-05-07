@@ -1,8 +1,8 @@
 {
-  "name": "@adobe/aem-boilerplate",
+  "name": "@adobe-ps/splunk-project-forge-redux",
   "private": true,
-  "version": "1.3.0",
-  "description": "Starter project for Adobe Helix",
+  "version": "1.0.0",
+  "description": "Splunk Blog EDS Migration — Redux Test Site (Project Forge pipeline testing)",
   "scripts": {
     "lint:js": "eslint .",
     "lint:css": "stylelint \"blocks/**/*.css\" \"styles/*.css\"",
@@ -11,20 +11,20 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/adobe/aem-boilerplate.git"
+    "url": "git+https://github.com/Adobe-Professional-Services/Splunk-Project-Forge-Redux.git"
   },
-  "author": "Adobe",
+  "author": "Adobe Professional Services",
   "license": "Apache License 2.0",
   "bugs": {
-    "url": "https://github.com/adobe/aem-boilerplate/issues"
+    "url": "https://github.com/Adobe-Professional-Services/Splunk-Project-Forge-Redux/issues"
   },
-  "homepage": "https://github.com/adobe/aem-boilerplate#readme",
+  "homepage": "https://github.com/Adobe-Professional-Services/Splunk-Project-Forge-Redux#readme",
   "devDependencies": {
-    "@babel/eslint-parser": "7.28.4",
+    "@babel/eslint-parser": "7.28.6",
     "eslint": "8.57.1",
     "eslint-config-airbnb-base": "15.0.0",
     "eslint-plugin-import": "2.32.0",
-    "stylelint": "16.25.0",
-    "stylelint-config-standard": "39.0.1"
+    "stylelint": "17.11.0",
+    "stylelint-config-standard": "40.0.0"
   }
 }

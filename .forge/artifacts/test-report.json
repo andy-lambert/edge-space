@@ -1,0 +1,170 @@
+{
+  "storyKey": "FORGE-102",
+  "executedAt": "2026-05-07T04:45:00Z",
+  "framework": "manual + eslint + stylelint + docker",
+  "suites": [
+    {
+      "name": "Static Analysis",
+      "scenarios": [
+        {
+          "id": "TS-019",
+          "title": "CSS Design Token Usage",
+          "status": "passed",
+          "evidence": "All color values use var(--token-name, fallback) syntax: --button-color, --background-color, --color-gray-600, --heading-color. All font-size values use var(--token-name) syntax: --body-font-size-s, --heading-font-size-xxl. Pill border-radius uses var(--pill-radius, 40px). One hardcoded border-radius: 8px on img element (not a color or font-size token — acceptable per criteria). Hardcoded spacing (margin, padding, gap) is acceptable per project decision."
+        },
+        {
+          "id": "TS-020",
+          "title": "ESLint Clean",
+          "status": "passed",
+          "evidence": "npx eslint blocks/article-hero/article-hero.js — exit code 0, zero errors, zero warnings."
+        },
+        {
+          "id": "TS-021",
+          "title": "Stylelint Clean",
+          "status": "passed",
+          "evidence": "npx stylelint blocks/article-hero/article-hero.css — exit code 0, zero errors."
+        }
+      ],
+      "passed": 3,
+      "failed": 0,
+      "skipped": 0
+    },
+    {
+      "name": "Unit Tests (Playwright/Chromium via MCP_DOCKER)",
+      "scenarios": [
+        {
+          "id": "TS-001",
+          "title": "Category Badge Text",
+          "status": "passed",
+          "evidence": "Category link renders with textContent 'Security' matching metadata value."
+        },
+        {
+          "id": "TS-002",
+          "title": "Category Badge Link URL",
+          "status": "passed",
+          "evidence": "href equals '/en_us/blog/security.html' — constructed from lowercase category slug."
+        },
+        {
+          "id": "TS-003",
+          "title": "Published Date Format",
+          "status": "passed",
+          "evidence": "time.textContent matches uppercase pattern (e.g., 'MARCH 23, 2026')."
+        },
+        {
+          "id": "TS-004",
+          "title": "Published Date <time> Element and datetime Attribute",
+          "status": "passed",
+          "evidence": "<time> element exists with valid datetime attribute (ISO 8601 date format)."
+        },
+        {
+          "id": "TS-005",
+          "title": "Read Time Display",
+          "status": "passed",
+          "evidence": ".article-hero-readtime element contains text matching /MINUTE READ/ pattern."
+        },
+        {
+          "id": "TS-006",
+          "title": "Title Renders as h1 (In-Block)",
+          "status": "passed",
+          "evidence": "h1 element found within block after decoration with non-empty textContent."
+        },
+        {
+          "id": "TS-007",
+          "title": "h1 Fallback from Document",
+          "status": "passed",
+          "evidence": "Block picks up document-level h1 when none exists inside block DOM — title text present in rendered output."
+        },
+        {
+          "id": "TS-008",
+          "title": "With-Image Variant: <picture> Element Rendered",
+          "status": "passed",
+          "evidence": "<picture> element present in block containing <img> child element."
+        },
+        {
+          "id": "TS-009",
+          "title": "Hero Image Has loading=eager",
+          "status": "passed",
+          "evidence": "img.getAttribute('loading') === 'eager' confirmed."
+        },
+        {
+          "id": "TS-010",
+          "title": "No-Image Variant: No Image Section in DOM",
+          "status": "passed",
+          "evidence": "block.querySelector('.article-hero-image') returns null when no-image class is present."
+        },
+        {
+          "id": "TS-011",
+          "title": "No-Image Variant: Metadata and Title Still Render",
+          "status": "passed",
+          "evidence": ".article-hero-metadata and .article-hero-title both present in no-image variant."
+        },
+        {
+          "id": "TS-012",
+          "title": "article-hero-loaded Class Added",
+          "status": "passed",
+          "evidence": "Class absent before decorate(), present after — block.classList.contains('article-hero-loaded') === true."
+        },
+        {
+          "id": "TS-013",
+          "title": "Category Link Analytics Attribute",
+          "status": "passed",
+          "evidence": "a.getAttribute('data-track-analytics') === 'true' confirmed."
+        },
+        {
+          "id": "TS-014",
+          "title": "Missing Category: Element Omitted, No Exception",
+          "status": "passed",
+          "evidence": "No .article-hero-category in DOM. Date and read-time still render. No exceptions thrown."
+        },
+        {
+          "id": "TS-015",
+          "title": "Missing Published Date: Element Omitted, No Exception",
+          "status": "passed",
+          "evidence": "No <time> element in DOM. Category badge still renders. No exceptions thrown."
+        },
+        {
+          "id": "TS-016",
+          "title": "Missing Read Time: Element Omitted, No Exception",
+          "status": "passed",
+          "evidence": "No .article-hero-readtime in DOM. Category and date still render. No exceptions thrown."
+        },
+        {
+          "id": "TS-017",
+          "title": "All Metadata Missing: Only Title Renders, No Exception",
+          "status": "passed",
+          "evidence": "No category, time, or readtime elements. article-hero-loaded class applied. No exceptions."
+        }
+      ],
+      "passed": 17,
+      "failed": 0,
+      "skipped": 0
+    },
+    {
+      "name": "Governance Compliance",
+      "scenarios": [
+        {
+          "id": "TS-023",
+          "title": "Governance Compliance (Review Agent Signoff)",
+          "status": "passed",
+          "evidence": "Pipeline log confirms DEV_REVIEW stage: Security verdict APPROVED (no vulnerabilities). Best-practices verdict APPROVED (Round 2 — all prior findings resolved). Both reviewers APPROVED before advancing to QA_REVIEW."
+        }
+      ],
+      "passed": 1,
+      "failed": 0,
+      "skipped": 0
+    }
+  ],
+  "totals": {
+    "passed": 21,
+    "failed": 0,
+    "skipped": 0,
+    "total": 21
+  },
+  "notes": [
+    "Unit tests (TS-001 through TS-017) executed via MCP_DOCKER Playwright/Chromium browser. Tests loaded article-hero.js as ES module from local HTTP server; meta tags set on page document.head to match getMetadata() behavior.",
+    "ESLint and Stylelint both ran locally with zero errors (exit code 0).",
+    "CSS token audit (TS-019): All colors and font-sizes use CSS custom properties. One hardcoded border-radius: 8px exists on .article-hero-image picture img (not in scope per criteria — only colors and font-sizes evaluated). Spacing values are hardcoded per project design system decision.",
+    "Pipeline log confirms both Security and Best-Practices agents returned APPROVED during DEV_REVIEW (final round after fixes in commit 8207b87).",
+    "TS-018 (Responsive Layout visual test), TS-022 (full WTR suite run), TS-024/025/026 (Lighthouse), TS-027 (separator a11y) were not in scope for this execution batch."
+  ]
+}
